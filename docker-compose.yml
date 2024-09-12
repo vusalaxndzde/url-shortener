@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+    redis:
+        image: redis:latest
+        container_name: url-shortener-redis
+        ports:
+            - "6379:6379"
+        environment:
+            - REDIS_PASSWORD=12345
+        command: ["redis-server", "--requirepass", "12345"]
+        volumes:
+            - redis_data:/data
+
+volumes:
+    redis_data:
