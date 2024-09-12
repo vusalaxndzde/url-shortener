@@ -1,0 +1,29 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+indent_size = 4
+indent_style = space
+insert_final_newline = false
+max_line_length = 120
+tab_width = 4
+
+[*.java]
+ij_java_align_consecutive_assignments = false
+ij_java_align_consecutive_variable_declarations = true
+ij_java_align_group_field_declarations = false
+ij_java_block_brace_style = next_line
+ij_java_case_statement_on_separate_line = true
+ij_java_catch_on_new_line = true
+ij_java_class_brace_style = next_line
+ij_java_else_on_new_line = true
+ij_java_finally_on_new_line = true
+ij_java_for_brace_force = always
+ij_java_if_brace_force = always
+ij_java_keep_line_breaks = true
+ij_java_lambda_brace_style = next_line
+ij_java_method_brace_style = next_line
+ij_java_special_else_if_treatment = true
+ij_java_while_brace_force = always
+ij_java_while_on_new_line = true
