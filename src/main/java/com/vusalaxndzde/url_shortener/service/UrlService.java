@@ -4,6 +4,7 @@ import com.vusalaxndzde.url_shortener.config.AppConfig;
 import com.vusalaxndzde.url_shortener.dto.UrlRequest;
 import com.vusalaxndzde.url_shortener.dto.UrlResponse;
 import com.vusalaxndzde.url_shortener.entity.Url;
+import com.vusalaxndzde.url_shortener.exception.UrlNotFoundException;
 import com.vusalaxndzde.url_shortener.repository.UrlRepository;
 import com.vusalaxndzde.url_shortener.helper.UrlShortenerHelper;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class UrlService
         this.appConfig = appConfig;
     }
 
+    public String findOriginalUrl(String shortenedUrl)
+    {
+        return repository.findById(shortenedUrl).map(Url::getOriginalUrl)
+            .orElseThrow(UrlNotFoundException::new);
+    }
+
     public UrlResponse shortUrl(UrlRequest urlRequest)
     {
         String originalUrl = urlRequest.getUrl();
@@ -41,12 +48,6 @@ public class UrlService
             .shortenedUrl(appConfig.getBaseUri() + "/" + shortedUrl)
             .expiresAt(url.getExpiresAt())
             .build();
-    }
-
-    public UrlResponse get(String shortenedUrl)
-    {
-        return repository.findById(shortenedUrl).map(UrlResponse::new).
-            orElseThrow(RuntimeException::new);
     }
 
 }
