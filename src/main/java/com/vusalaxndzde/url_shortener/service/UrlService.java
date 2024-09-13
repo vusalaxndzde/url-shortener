@@ -34,13 +34,17 @@ public class UrlService
 
     public UrlResponse shortUrl(UrlRequest urlRequest)
     {
-        String originalUrl = urlRequest.getUrl();
-        String shortedUrl  = urlShortenerHelper.generateShortUrl(originalUrl);
+        String originalUrl  = urlRequest.getUrl();
+        String shortedUrl   = urlShortenerHelper.generateShortUrl(originalUrl);
+        Long   ttl          = calculateTtlInSeconds(urlRequest.getExpireDay(), urlRequest.getExpireHour(), urlRequest.getExpireMinute());
+
+        ttl = ttl == 0 ? appConfig.getDefaultTtl() : ttl;
 
         Url url = new Url();
         url.setOriginalUrl(originalUrl);
         url.setShortenedUrl(shortedUrl);
-        url.setExpiresAt(LocalDateTime.now().plusMinutes(30));
+        url.setExpiresAt(LocalDateTime.now().plusSeconds(ttl));
+        url.setTtl(ttl);
         repository.save(url);
 
         return UrlResponse.builder()
@@ -48,6 +52,15 @@ public class UrlService
             .shortenedUrl(appConfig.getBaseUri() + "/" + shortedUrl)
             .expiresAt(url.getExpiresAt())
             .build();
+    }
+
+    private Long calculateTtlInSeconds(Integer expireDay, Integer expireHour, Integer expireMinute)
+    {
+        expireDay = (expireDay == null) ? 0 : expireDay;
+        expireHour = (expireHour == null) ? 0 : expireHour;
+        expireMinute = (expireMinute == null) ? 0 : expireMinute;
+
+        return (long) (expireDay * 24 * 60 * 60 + expireHour * 60 * 60 + expireMinute * 60);
     }
 
 }

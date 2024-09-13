@@ -14,4 +14,6 @@ public class AppConfig
 
     private String baseUri;
 
+    private Long defaultTtl;
+
 }

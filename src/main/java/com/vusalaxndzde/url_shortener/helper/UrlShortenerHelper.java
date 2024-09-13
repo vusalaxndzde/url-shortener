@@ -42,7 +42,6 @@ public class UrlShortenerHelper
 
             StringBuilder shortUrlBuilder = new StringBuilder();
 
-            // Use first 8 bytes of the hash to generate a unique URL
             for (int i = 0; i < SHORT_URL_LENGTH; i++)
             {
                 int index = hash[i] & 0xFF;

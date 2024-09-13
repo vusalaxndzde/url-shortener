@@ -3,6 +3,7 @@ package com.vusalaxndzde.url_shortener.controller;
 import com.vusalaxndzde.url_shortener.dto.UrlRequest;
 import com.vusalaxndzde.url_shortener.dto.UrlResponse;
 import com.vusalaxndzde.url_shortener.service.UrlService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class UrlController
     }
 
     @PostMapping
-    public ResponseEntity<UrlResponse> shortUrl(@RequestBody UrlRequest request)
+    public ResponseEntity<UrlResponse> shortUrl(@Valid @RequestBody UrlRequest request)
     {
         return ResponseEntity.ok(urlService.shortUrl(request));
     }
