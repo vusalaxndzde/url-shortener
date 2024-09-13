@@ -2,7 +2,6 @@ package com.vusalaxndzde.url_shortener.controller;
 
 import com.vusalaxndzde.url_shortener.dto.UrlRequest;
 import com.vusalaxndzde.url_shortener.dto.UrlResponse;
-import com.vusalaxndzde.url_shortener.entity.Url;
 import com.vusalaxndzde.url_shortener.service.UrlService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +25,9 @@ public class UrlController
     }
 
     @PostMapping
-    public ResponseEntity<Url> shortUrl(@RequestBody UrlRequest request)
+    public ResponseEntity<UrlResponse> shortUrl(@RequestBody UrlRequest request)
     {
-        return ResponseEntity.ok(urlService.save(request));
+        return ResponseEntity.ok(urlService.shortUrl(request));
     }
 
 }

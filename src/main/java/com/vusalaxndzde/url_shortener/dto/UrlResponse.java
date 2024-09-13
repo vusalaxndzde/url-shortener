@@ -2,15 +2,13 @@ package com.vusalaxndzde.url_shortener.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vusalaxndzde.url_shortener.entity.Url;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UrlResponse
