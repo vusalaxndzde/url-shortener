@@ -73,7 +73,7 @@ Once the application is running, you can shorten URLs, manage their TTL, and use
     - Request Body:
       ```json
       {
-        "longUrl": "https://www.example.com",
+        "url": "https://www.example.com",
         "ttl": {
           "days": 1,
           "hours": 5,
@@ -84,7 +84,9 @@ Once the application is running, you can shorten URLs, manage their TTL, and use
     - Response:
       ```json
       {
-        "shortUrl": "http://localhost:8080/abc123"
+        "shortedUrl": "http://localhost:8080/abc123",
+        "originalUrl": "https://www.example.com",
+        "expiresAt": "2024-09-14 13:48:40"
       }
       ```
 
