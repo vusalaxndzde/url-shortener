@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "url-shortener")
-public class AppConfig
+public class AppProps
 {
 
     private String baseUri;

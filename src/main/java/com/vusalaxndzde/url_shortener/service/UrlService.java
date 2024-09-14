@@ -1,6 +1,6 @@
 package com.vusalaxndzde.url_shortener.service;
 
-import com.vusalaxndzde.url_shortener.config.AppConfig;
+import com.vusalaxndzde.url_shortener.config.AppProps;
 import com.vusalaxndzde.url_shortener.dto.UrlRequest;
 import com.vusalaxndzde.url_shortener.dto.UrlResponse;
 import com.vusalaxndzde.url_shortener.entity.Url;
@@ -18,13 +18,13 @@ public class UrlService
 
     private final UrlRepository repository;
     private final UrlShortenerHelper urlShortenerHelper;
-    private final AppConfig appConfig;
+    private final AppProps appProps;
 
-    public UrlService(UrlRepository repository, UrlShortenerHelper urlShortenerHelper, AppConfig appConfig)
+    public UrlService(UrlRepository repository, UrlShortenerHelper urlShortenerHelper, AppProps appProps)
     {
         this.repository = repository;
         this.urlShortenerHelper = urlShortenerHelper;
-        this.appConfig = appConfig;
+        this.appProps = appProps;
     }
 
     public String findOriginalUrl(String shortenedUrl)
@@ -47,7 +47,7 @@ public class UrlService
 
     private Long getEffectiveTtl(UrlRequest.Ttl ttl)
     {
-        return calculateTtlInSeconds(ttl) == 0 ? appConfig.getDefaultTtl() : calculateTtlInSeconds(ttl);
+        return calculateTtlInSeconds(ttl) == 0 ? appProps.getDefaultTtl() : calculateTtlInSeconds(ttl);
     }
 
     private Long calculateTtlInSeconds(UrlRequest.Ttl ttl)
@@ -81,7 +81,7 @@ public class UrlService
     {
         return UrlResponse.builder()
             .originalUrl(url.getOriginalUrl())
-            .shortenedUrl(appConfig.getBaseUri() + "/" + url.getShortenedUrl())
+            .shortenedUrl(appProps.getBaseUri() + "/" + url.getShortenedUrl())
             .expiresAt(url.getExpiresAt())
             .build();
     }
