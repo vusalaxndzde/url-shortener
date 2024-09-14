@@ -1,8 +1,7 @@
 package com.vusalaxndzde.url_shortener.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,19 +14,35 @@ import lombok.Setter;
 public class UrlRequest
 {
 
-    @NotEmpty
+    @NotBlank
     private String url;
 
-    @Min(0)
-    @Max(5)
-    private Integer expireDay;
+    @Valid
+    private Ttl ttl;
 
-    @Min(0)
-    @Max(24)
-    private Integer expireHour;
 
-    @Min(0)
-    @Max(60)
-    private Integer expireMinute;
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Ttl
+    {
+
+        @Min(0)
+        @Max(5)
+        @NotNull
+        private Integer days;
+
+        @Min(0)
+        @Max(23)
+        @NotNull
+        private Integer hours;
+
+        @Min(0)
+        @Max(59)
+        @NotNull
+        private Integer minutes;
+
+    }
 
 }
