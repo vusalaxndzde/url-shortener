@@ -2,6 +2,21 @@
 
 A URL shortening service built with Spring Boot, using Redis as the primary datastore. The service allows for secure random URL generation with support for TTL (Time-To-Live), which automatically deletes URLs from Redis when they expire.
 
+<p align="center">
+     <a alt="Java">
+        <img src="https://img.shields.io/badge/Java-v17-blue.svg" />
+    </a>
+    <a alt="Spring Boot">
+        <img src="https://img.shields.io/badge/Spring%20Boot-v3.3.3-brightgreen.svg" />
+    </a>
+    <a alt="Maven">
+        <img src="https://img.shields.io/badge/Maven-v4.0.0-orange.svg" />
+    </a>
+    <a alt="Redis">
+        <img src="https://img.shields.io/badge/Redis-v7.4.0-red.svg" />
+    </a>
+</p>
+
 ## Features
 
 - **Secure URL Shortening**: Generates unique, random, non-sequential short URLs using `SecureRandom`.
