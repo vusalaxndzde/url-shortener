@@ -33,7 +33,7 @@ build/
 .vscode/
 
 ### env ###
-application-prod.properties
+#application-prod.properties
 
 ### OS files ###
 .DS_Store
