@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### env ###
+application-prod.properties
+
+### OS files ###
+.DS_Store
