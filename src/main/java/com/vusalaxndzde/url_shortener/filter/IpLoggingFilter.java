@@ -17,7 +17,10 @@ public class IpLoggingFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        String ipAddress = httpRequest.getRemoteAddr();
+        String ipAddress = httpRequest.getHeader("X-Forwarded-For");
+        if (ipAddress == null || ipAddress.isEmpty()) {
+            ipAddress = request.getRemoteAddr();
+        }
         logger.info("Request from IP: " + ipAddress);
 
         chain.doFilter(request, response);
