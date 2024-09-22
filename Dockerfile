@@ -1,14 +1,19 @@
 #
 # Build stage
 #
-FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
-COPY . .
-RUN mvn clean install
+FROM maven:3.8.3-openjdk-17-slim AS build
+WORKDIR /app
+COPY pom.xml /app
+ARG MAIN_CLASS=/src/main/java/com/vusalaxndzde/url_shortener/UrlShortenerApplication.java
+COPY ${MAIN_CLASS} /app${MAIN_CLASS}
+RUN mvn clean package -DskipTests
+COPY . /app
+RUN mvn clean package
 
 #
 # Package stage
 #
-FROM eclipse-temurin:17-jdk-alpine
-COPY --from=build /target/url-shortener-0.0.1.jar url-shortener-0.0.1.jar
+FROM openjdk:17-jdk-slim
+COPY --from=build /app/target/*.jar url-shortener.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "url-shortener-0.0.1.jar", "--spring.profiles.active=prod"]
+ENTRYPOINT ["java", "-jar", "url-shortener.jar", "--spring.profiles.active=prod"]
