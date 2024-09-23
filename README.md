@@ -23,7 +23,7 @@ A URL shortening service built with Spring Boot, using Redis as the primary data
 - **TTL Management**: Allows setting an expiration time (TTL) for each shortened URL, with Redis automatically removing the expired entries.
 - **Redis for Storage**: Redis is used for storing short URLs and efficiently managing their expiration.
 - **Redirection**: Shortened URLs are redirected using HTTP status 302 (Found) for temporary redirection.
-- **Error Handling**: Custom exceptions (`URNotFoundException`) and enhanced error handling.
+- **Error Handling**: Custom exceptions (`UrlNotFoundException`) and enhanced error handling.
 
 ## Getting Started
 
